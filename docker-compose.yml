@@ -8,16 +8,16 @@ services:
     volumes:
       - ./services/web/:/usr/src/app/
     ports:
-      - 5000:5000
+      - 5001:5000
       - 5555:5555
     env_file:
-      - ./.env.dev
+      - ./.env.dev.sample
     depends_on:
       - db
       - broker
   db:
     container_name: db
-    image: postgres:12-alpine
+    image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data/
       - ./services/web/database:/docker-entrypoint-initdb.d
@@ -27,7 +27,7 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=db_dev,db_test
   broker:
     container_name: broker
-    image: rabbitmq:3.7.14-management
+    image: rabbitmq:3-management
     environment:
       - RABBITMQ_DEFAULT_USER=rabbit-user
       - RABBITMQ_DEFAULT_PASS=rabbit-password
