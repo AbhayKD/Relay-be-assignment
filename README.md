@@ -8,10 +8,8 @@ We’d like you to write and deploy a stateless API endpoint that takes a courie
 ## Table of Contents
 1. [Technologies Used](#technologies-used)
 2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Features](#features)
-6. [Testing](#testing)
-7. [Further Improvements](#known-issues)
+3. [Testing](#testing)
+4. [Examples](#examples)
 
 ## Technologies Used
 - Python
@@ -39,22 +37,18 @@ https://relay-courier-api.onrender.com/
 ## Examples 
 
 Request
--------
 URL - https://relay-courier-api.onrender.com/health_check
 TYPE - GET
 
 Response
---------
 {"message":"All AOK!"}
 
-
+----------------------------------------------------------
 Request
--------
 URL - https://relay-courier-api.onrender.com/earning/platinum_tier
 TYPE - POST
 
 Response
---------
 ```{
     "line_items": [
         {
