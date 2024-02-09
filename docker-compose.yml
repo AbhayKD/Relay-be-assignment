@@ -1,41 +1,22 @@
-version: '3'
+version: '3.8'
 
 services:
-  web:
-    container_name: web
-    build: ./services/web
-    command: python manage.py run -h 0.0.0.0
+  server:
+    build: .
     volumes:
-      - ./services/web/:/usr/src/app/
+      - .:/usr/src/app
     ports:
-      - 5001:5000
-      - 5555:5555
-    env_file:
-      - ./.env.dev.sample
+      - '8000:8000'
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=src/app.py
+    command: python -m flask run --host=0.0.0.0 --port=8000
+
+  test:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: /bin/bash -c "pip install -r requirements-test.txt && pytest test/"
     depends_on:
-      - db
-      - broker
-  db:
-    container_name: db
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-      - ./services/web/database:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_USER=db_user
-      - POSTGRES_PASSWORD=db_password
-      - POSTGRES_MULTIPLE_DATABASES=db_dev,db_test
-  broker:
-    container_name: broker
-    image: rabbitmq:3-management
-    environment:
-      - RABBITMQ_DEFAULT_USER=rabbit-user
-      - RABBITMQ_DEFAULT_PASS=rabbit-password
-  docs:
-    container_name: docs
-    image: swaggerapi/swagger-ui:3.28.0
-    build: ./services/docs
-    ports:
-      - 8000:8080
-volumes:
-  postgres_data:
+      - server
+

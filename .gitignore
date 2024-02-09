@@ -16,8 +16,6 @@ Thumbs.db
 
 # env configs
 .env.dev
-.env.prod
-.env.prod.db
 
 # logs
 ./services/web/logs
@@ -27,7 +25,7 @@ Thumbs.db
 debug*
 
 # virtualenv
-env
+.venv
 
 # cov
 htmlcov
