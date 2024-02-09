@@ -9,7 +9,8 @@ We’d like you to write and deploy a stateless API endpoint that takes a courie
 1. [Technologies Used](#technologies-used)
 2. [Installation](#installation)
 3. [Testing](#testing)
-4. [Examples](#examples)
+4. [Public Deployment Endpoint](public-deployment-endpoint)
+5. [Examples](#examples)
 
 ## Technologies Used
 - Python
@@ -30,26 +31,35 @@ To run tests, use the following command:
 or
 ```docker-compose up test```
 
-## Public Deployment URL
+## Public Deployment Endpoint
 
 https://relay-courier-api.onrender.com/
 
 ## Examples 
 
-Request
-URL - https://relay-courier-api.onrender.com/health_check
-TYPE - GET
+## Get list of Things
 
-Response
-{"message":"All AOK!"}
+### Request
 
-----------------------------------------------------------
-Request
-URL - https://relay-courier-api.onrender.com/earning/platinum_tier
-TYPE - POST
+`GET /health_check/`
 
-Response
-```{
+    curl -i -H 'Accept: application/json'  https://relay-courier-api.onrender.com/health_check
+
+### Response
+
+    ```{"message":"All AOK!"}```
+
+## Get Rate Card Earning
+
+### Request
+
+`POST /earning/{rate_card_id}`
+
+    curl -i -H 'Accept: application/json' -d '[{"route_id":"RT5QHQ6M3A937H","attempt_date_time":"2023-12-18T08:33:18.588934+00:00","success":true},{"route_id":"RT5QHQ6M3A937H","attempt_date_time":"2023-12-18T08:37:11.897203+00:00","success":true},{"route_id":"RT5QHQ6M3A937H","attempt_date_time":"2023-12-18T08:39:10.938613+00:00","success":true},{"route_id":"RT5QHQ6M3A937H","attempt_date_time":"2023-12-18T08:43:14.747595+00:00","success":false},{"route_id":"RT5QHQ6M3A937H","attempt_date_time":"2023-12-18T08:45:45.375317+00:00","success":true},{"route_id":"RT5QHQ6M3A937H","attempt_date_time":"2023-12-18T08:45:58.396736+00:00","success":true}]' [http://localhost:7000/thing](https://relay-courier-api.onrender.com/earning/platinum_tier)
+
+### Response
+
+    ```{
     "line_items": [
         {
             "name": "Per successful attempt",
