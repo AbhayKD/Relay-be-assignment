@@ -31,3 +31,65 @@ To run tests, use the following command:
 ```pytest test/```
 or
 ```docker-compose up test```
+
+## Public Deployment URL
+
+https://relay-courier-api.onrender.com/
+
+## Examples 
+
+Request
+-------
+URL - https://relay-courier-api.onrender.com/health_check
+TYPE - GET
+
+Response
+--------
+{"message":"All AOK!"}
+
+
+Request
+-------
+URL - https://relay-courier-api.onrender.com/earning/platinum_tier
+TYPE - POST
+
+Response
+--------
+```{
+    "line_items": [
+        {
+            "name": "Per successful attempt",
+            "quantity": 5.0,
+            "rate": 0.667,
+            "total": 3.335
+        },
+        {
+            "name": "Per unsuccessful attempt",
+            "quantity": 1.0,
+            "rate": 0.155,
+            "total": 0.155
+        },
+        {
+            "name": "Long route bonus",
+            "quantity": 0,
+            "rate": 12.0,
+            "total": 0.0
+        },
+        {
+            "name": "Loyalty Bonus (attempts)",
+            "quantity": 0,
+            "rate": 19.0,
+            "total": 0.0
+        },
+        {
+            "name": "Consistency Bonus",
+            "quantity": 0,
+            "rate": 32.0,
+            "total": 0.0
+        }
+    ],
+    "line_item_subtotal": 3.4899999999999998,
+    "hours_worked": 0.2110577227777778,
+    "minimum_earnings": 3.218630272361111,
+    "final_earnings": 3.4899999999999998
+}```
